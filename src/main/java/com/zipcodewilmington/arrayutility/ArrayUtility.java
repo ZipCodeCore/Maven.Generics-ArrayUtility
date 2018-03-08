@@ -34,13 +34,7 @@ public class ArrayUtility<T> {
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
-        Integer count = 0;
-        for (T item : this.inputArray) {
-            if (item == valueToEvaluate) {
-                count++;
-            }
-        }
-        return count;
+         return getNumberOfOccurrences(this.inputArray, valueToEvaluate);
     }
 
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
