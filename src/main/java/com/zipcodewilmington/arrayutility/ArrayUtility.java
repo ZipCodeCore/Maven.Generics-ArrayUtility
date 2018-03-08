@@ -60,9 +60,7 @@ import java.util.Arrays;
     }
 
         public T[] removeValue(T valueToRemove) {
-
-            T[] arrayWithOutRemovedValue;
-            arrayWithOutRemovedValue = Arrays.copyOf(inputArray, (inputArray.length - getNumberOfOccurrences(valueToRemove)));
+            T[] arrayWithOutRemovedValue = Arrays.copyOf(inputArray, (inputArray.length - getNumberOfOccurrences(valueToRemove)));
             int idx = 0;
             for (int i = 0; i < inputArray.length; i++) {
                 if (!inputArray[i].equals(valueToRemove)) {
