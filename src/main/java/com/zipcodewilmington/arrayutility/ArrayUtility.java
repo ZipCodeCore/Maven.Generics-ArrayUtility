@@ -10,34 +10,52 @@ public class ArrayUtility<T> {
     public T[] inputArray;
     public T[] mergedArray;
 
-    public ArrayUtility(T[] inputArray){
+    public ArrayUtility(T[] inputArray) {
         this.inputArray = inputArray;
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
-     this.mergedArray = Arrays.copyOf(this.inputArray, this.inputArray.length + arrayToMerge.length);
-     System.arraycopy(arrayToMerge, 0, mergedArray, mergedArray.length - arrayToMerge.length, arrayToMerge.length);
-     return null;
+        Arrays.sort(mergeArrays(arrayToMerge));
+        for( )
+        return null;
     }
 
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
-     this.mergedArray = Arrays.copyOf(this.inputArray, this.inputArray.length + arrayToMerge.length);
-      System.arraycopy(arrayToMerge, 0, mergedArray, mergedArray.length - arrayToMerge.length, arrayToMerge.length);
-       Integer count = 0;
-       for (T t : this.mergedArray){
-           if (t == valueToEvaluate){
-               count++;
-           }
-       }
+        mergeArrays(arrayToMerge);
+        Integer count = 0;
+        for (T elementInArray : this.mergedArray) {
+            if (elementInArray == valueToEvaluate) {
+                count++;
+            }
+        }
         return count;
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
-        return null;
+        Integer count = 0;
+        for (T elementInArray : this.inputArray) {
+            if (elementInArray == valueToEvaluate) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public T[] removeValue(T valueToRemove) {
-           return null;
+        T[] arrayWitValueRemoved = Arrays.copyOf(this.inputArray, this.inputArray.length - getNumberOfOccurrences(valueToRemove));
+        Integer indexCount = 0;
+        for (T elementInArray : this.inputArray) {
+            if (valueToRemove != elementInArray) {
+                arrayWitValueRemoved[indexCount] = elementInArray;
+                indexCount++;
+            }
+        }
+        return arrayWitValueRemoved;
     }
 
+    public T[] mergeArrays(T[] arrayToMerge) {
+        this.mergedArray = Arrays.copyOf(this.inputArray, this.inputArray.length + arrayToMerge.length);
+        System.arraycopy(arrayToMerge, 0, mergedArray, mergedArray.length - arrayToMerge.length, arrayToMerge.length);
+        return this.mergedArray;
+    }
 }
