@@ -15,9 +15,16 @@ public class ArrayUtility<T> {
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
-        Arrays.sort(mergeArrays(arrayToMerge));
-        for( )
-        return null;
+        mergeArrays(arrayToMerge);
+        Integer indexCount = 0;
+        T currentMatch = null;
+        for( T elementInArray : mergedArray){
+            if (getNumberOfOccurrences(elementInArray) > getNumberOfOccurrences(mergedArray[indexCount +1])){
+                currentMatch = elementInArray;
+                indexCount++;
+            }
+        }
+        return currentMatch;
     }
 
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
