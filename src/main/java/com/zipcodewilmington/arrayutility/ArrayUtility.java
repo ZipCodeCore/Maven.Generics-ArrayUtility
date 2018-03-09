@@ -1,9 +1,10 @@
 package com.zipcodewilmington.arrayutility;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Arrays.*;
 
 
 /**
@@ -12,13 +13,15 @@ import java.util.Map;
 public class ArrayUtility<T> {
 
    private ArrayList<T> inputList = new ArrayList<>();
+   private T[] newArray;
 
     public ArrayUtility(T[] inputArray) {
-        inputList.addAll(Arrays.asList(inputArray));
+        inputList.addAll(asList(inputArray));
+        this.newArray = copyOf(inputArray, inputArray.length);
     }
 
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate){
-        inputList.addAll(Arrays.asList(arrayToMerge));
+        inputList.addAll(asList(arrayToMerge));
 
         Integer counter = 0;
         for(T t : inputList){
@@ -30,15 +33,22 @@ public class ArrayUtility<T> {
     }
 
     public T[] removeValue(T valueToRemove){
-        inputList.removeAll(Arrays.asList(valueToRemove));
-        return (T[]) inputList.toArray();
+        T[] myArray = copyOf(newArray, newArray.length);
+        T[] lastArray = null;
+        for(int i = 0; i < myArray.length; i++){
+            if(myArray[i] == valueToRemove){
+                System.arraycopy(myArray, i+1, myArray, i, myArray.length - i - 1);
+            }
+        }
+        lastArray = Arrays.copyOf(myArray, myArray.length - getNumberOfOccurrences(valueToRemove));
+        return lastArray;
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge) {
-        inputList.addAll(Arrays.asList(arrayToMerge));
+        inputList.addAll(asList(arrayToMerge));
 
         Map<T, Integer> inputMap = new HashMap<>(inputList.size());
-        int maxCount = Integer.MIN_VALUE;
+        int maxCount;
         T mostCommon = null;
         for (T t : inputList) {
             if (!inputMap.containsKey(t)) {
@@ -67,4 +77,5 @@ public class ArrayUtility<T> {
             }
         }return counter;
     }
+
 }
