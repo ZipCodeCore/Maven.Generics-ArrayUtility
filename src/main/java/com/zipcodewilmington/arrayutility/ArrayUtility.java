@@ -1,7 +1,7 @@
 package com.zipcodewilmington.arrayutility;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -11,6 +11,7 @@ public class ArrayUtility<T> {
 
     private T [] myArray;
     private  ArrayList<T> myArrayList;
+    T[] resultArray;
 
     public ArrayUtility(T[] myArray) {
         this.myArray = myArray;
@@ -41,8 +42,6 @@ public class ArrayUtility<T> {
             }
         }
 
-
-
         return mostCommon;
     }
 
@@ -57,7 +56,14 @@ public class ArrayUtility<T> {
     }
 
     public T[] removeValue(T valueToRemove){
-        //gT[] resultArray = (T[])Array.newInstance(T[],0);
-        return null;
+        int resultArrayIndex=0;
+        resultArray = Arrays.copyOf(myArray,myArray.length-getNumberOfOccurrences(valueToRemove));
+        for(int i=0;i<myArray.length;i++){
+            if(!myArray[i].equals(valueToRemove)){
+                resultArray[resultArrayIndex]=myArray[i];
+                resultArrayIndex++;
+            }
+        }
+        return resultArray;
     }
 }
