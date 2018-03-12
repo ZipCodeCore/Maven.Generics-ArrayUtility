@@ -59,8 +59,20 @@ public class ArrayUtility<E> {
                 mostCommon = entry.getKey();
             }
         }
-
         return mostCommon;
     }
+
+    public E[] removeValue(E valueToRemove) {
+        int x = this.getNumberOfOccurrences(valueToRemove);
+        E[] reducedLengthArray = Arrays.copyOf(this.inputArray, this.inputArray.length - x);
+        for (int i = 0, j = 0; i < this.inputArray.length; i++) {
+            if (this.inputArray[i] != valueToRemove) {
+                reducedLengthArray[j] = this.inputArray[i];
+                j++;
+            }
+        }
+        return reducedLengthArray;
+    }
+
 
 }
