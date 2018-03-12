@@ -1,8 +1,6 @@
 package com.zipcodewilmington.arrayutility;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by leon on 3/6/18.
@@ -43,28 +41,26 @@ public class ArrayUtility<E> {
         return count;
     }
 
-//    public int getMostCommonFromMerge(E valueToEvaluate) {
-//
-//        Object mostCommonNum = null;
-//        int mostOccurrences = 0;
-//
-//        HashMap<Object, Integer> hashMap = new HashMap<>();
-//
-//        for (Object object : objectArray) {
-//            if (!hashMap.containsKey(object)) {
-//                hashMap.put(object, 1);
-//            } else {
-//                hashMap.put(object, hashMap.get(object) + 1);
-//            }
-//
-//            if (hashMap.get(object) > mostOccurrences) {
-//                mostCommonNum = object;
-//                mostOccurrences = hashMap.get(object);
-//            }
-//        }
-//
-//        System.out.println(mostCommonNum);
-//        return mostCommonNum;
-//    }
+    public E getMostCommonFromMerge(E[] arrayToMerge) {
+        E[] finalArray = this.mergeArrays(arrayToMerge);
+        this.inputArray = finalArray;
+
+        Map<E, Integer> hashMap = new HashMap<>();
+        for (E key : this.inputArray) {
+            if (hashMap.get(key) == null) {
+                hashMap.put(key, getNumberOfOccurrences(key));
+            }
+        }
+        int maxNumberOfOccurrences = Collections.max(hashMap.values());
+
+        E mostCommon = null;
+        for (Map.Entry<E, Integer> entry : hashMap.entrySet()) {
+            if (entry.getValue() == maxNumberOfOccurrences) {
+                mostCommon = entry.getKey();
+            }
+        }
+
+        return mostCommon;
+    }
 
 }
