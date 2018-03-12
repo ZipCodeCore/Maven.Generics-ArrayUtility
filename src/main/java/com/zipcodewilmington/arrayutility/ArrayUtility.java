@@ -2,6 +2,7 @@ package com.zipcodewilmington.arrayutility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Created by leon on 3/6/18.
@@ -33,10 +34,37 @@ public class ArrayUtility<E> {
     }
 
     public int getNumberOfOccurrences(E valueToEvaluate) {
-        return 0;
+        int count = 0;
+        for (E element : inputArray) {
+            if (element == valueToEvaluate) {
+                count++;
+            }
+        }
+        return count;
     }
 
-
-
+//    public int getMostCommonFromMerge(E valueToEvaluate) {
+//
+//        Object mostCommonNum = null;
+//        int mostOccurrences = 0;
+//
+//        HashMap<Object, Integer> hashMap = new HashMap<>();
+//
+//        for (Object object : objectArray) {
+//            if (!hashMap.containsKey(object)) {
+//                hashMap.put(object, 1);
+//            } else {
+//                hashMap.put(object, hashMap.get(object) + 1);
+//            }
+//
+//            if (hashMap.get(object) > mostOccurrences) {
+//                mostCommonNum = object;
+//                mostOccurrences = hashMap.get(object);
+//            }
+//        }
+//
+//        System.out.println(mostCommonNum);
+//        return mostCommonNum;
+//    }
 
 }
