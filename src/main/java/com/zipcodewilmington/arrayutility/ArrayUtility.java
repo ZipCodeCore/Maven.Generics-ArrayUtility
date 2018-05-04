@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class ArrayUtility<T> {
 
-    protected T[] inputArray;
+    private T[] inputArray;
 
     public ArrayUtility(T[] inputArray) {
         this.inputArray = inputArray;
@@ -16,8 +16,7 @@ public class ArrayUtility<T> {
     public Integer countDuplicatesInMerge(T[] arrayToMerge, T valueToEvaluate) {
         ArrayList<T> mergedArrays = new ArrayList<T>(Arrays.asList(inputArray));
         mergedArrays.addAll(Arrays.asList(arrayToMerge));
-        Integer occurred = count(mergedArrays, valueToEvaluate);
-        return occurred;
+        return count(mergedArrays, valueToEvaluate);
     }
 
     public T getMostCommonFromMerge(T[] arrayToMerge){
@@ -51,19 +50,11 @@ public class ArrayUtility<T> {
         return obArray.toArray(shorten);
 
     }
-    /*public void removeStudent(String firstName, String lastName) {
-
-            if (students[p] == null) {
-                students[p] = this.students[p + 1];
-                students[p + 1] = null;
-            }
-        }
-    }*/
 
     public Integer count(ArrayList<T> mergedArrays, T valueToEvaluate) {
     Integer count = 0;
-        for(int i = 0; i<mergedArrays.size();i++) {
-            if (mergedArrays.get(i).equals(valueToEvaluate)) {
+        for(T item: mergedArrays) {
+            if (item.equals(valueToEvaluate)) {
                 count++;
             }
         }
